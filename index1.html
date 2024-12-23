@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        body {
+            background-color: #282c34;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #343a40;
+        }
+
+        .left-side {
+            width: 50%;
+            position: relative;
+            background-color: #343a40;
+            border-radius: 10px;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            width: 80px; /* Set the width of the logo container */
+            height: 80px; /* Set the height of the logo container */
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Hide overflow */
+            border: 2px solid #007bff; /* Optional: Add a border */
+        }
+
+        .logo-container img {
+            width: 100%; /* Make the logo fill the container */
+            height: 100%; /* Make the logo fill the container */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        .left-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .left-side .text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+        }
+
+        .right-side {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-field label {
+            font-weight: bold;
+        }
+
+        .input-field input {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #495057; 
+            color: white;
+        }
+
+        .input-field input:focus {
+            border-color: #80bdff;
+            outline: none;
+        }
+
+        .submit-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .link {
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="logo-container">
+                <img src="logo.jpg" alt="Logo" class="logo">
+            </div>
+            <img src="background-abstract-realistic-technology-particle_23-2148431264.avif" alt="Sign Up Image">
+            <div class="text">
+                <h2>Join AIQ Test</h2>
+                <p>AI-Powered Question Paper Generator & Evaluator</p>
+            </div>
+        </div>
+        <div class="right-side">
+            <div id="signup-section">
+                <h1>Sign Up</h1>
+                <div class="input-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button class="submit-btn" onclick="submitForm()">Sign Up</button>
+                <p>Already have an account ? <span class="link" onclick="showLogin()">Login here</span></p>
+                <p><span class="link" onclick="showResetPassword()">Forgot Password?</span></p>
+            </div>
+
+            <div id="login-section" class="hidden">
+                <h1>Login</h1>
+                <div class="input-field">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-field">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <button class="submit-btn" onclick="login()">Login</button>
+                <p>Don't have an account? <span class="link" onclick="showSignUp()">Sign up here</span></p>
+            </div>
+
+            <div id="reset-password-section" class="hidden">
+                <h1>Reset Password</h1>
+                <div class="input-field">
+                    <label for="reset-email">Email</label>
+                    <input type="email" id="reset-email" placeholder="Enter your email" required>
+                </div>
+                <button class="submit-btn" onclick="resetPassword()">Reset Password</button>
+                <p><span class="link" onclick="showLogin()">Back to Login</span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            if (username && email && password) {
+                // Redirect to landing.html on successful sign-up
+                window.location.href = 'landing.html';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    
+        function showLogin() {
+            document.getElementById('signup-section').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('reset-password-section').classList.add('hidden');
+        }
+    
+        function showResetPassword() {
+            document.getElementById('signup-section').classList.add('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('reset-password-section').classList.remove('hidden');
+        }
+    
+        function showSignUp() {
+            document.getElementById('signup-section').classList.remove('hidden');
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('reset-password-section').classList.add('hidden');
+        }
+    
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+    
+            if (email && password) {
+                // Redirect to landing.html on successful login
+                window.location.href = 'landing.html';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value;
+    
+            if (email) {
+                alert('Password reset link sent to your email!');
+            } else {
+                alert('Please enter your email.');
+            }
+        }
+    </script>
+</body>
+</html>
